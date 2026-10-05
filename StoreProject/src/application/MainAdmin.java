@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -152,12 +153,76 @@ public class MainAdmin {
 						System.out.println(e.getMessage());
 					}
 					break;
-				}
+				case 5:
+					try {
+						if (list.isEmpty()) {
+							System.out.println(
+									"There are no registered products; you need to register a product first in order to search for one.");
+						} else {
+							sc.nextLine();
+							System.out.print("Which product do you want to add from stock?");
+							String chooseAdd = sc.nextLine();
 
+							boolean addStock = false;
+
+							for (Product product : list) {
+								if (product.getName().equalsIgnoreCase(chooseAdd)) {
+									System.out.print("How many units do you wish to add?");
+									int pickUp = sc.nextInt();
+									product.addStock(pickUp);
+									sc.nextLine();
+									addStock = true;
+									System.out.println("Updated product.");
+									break;
+
+								}
+							}
+							if (!addStock) {
+								System.out.println("The product could not be found.");
+							}
+						}
+					} catch (IllegalArgumentException e) {
+						System.out.println(e.getMessage());
+					}
+
+					break;
+				case 6:
+					if (list.isEmpty()) {
+						System.out.println(
+								"There are no registered products; you need to register a product first in order to search for one.");
+					} else {
+						sc.nextLine();
+						System.out.print("Which product do you want to remove from stock? ");
+						String productRemove = sc.nextLine();
+
+						boolean productRemoveStock = false;
+
+						Iterator<Product> iterator = list.iterator();
+
+						while (iterator.hasNext()) {
+
+							Product product = iterator.next();
+
+							if (product.getName().equalsIgnoreCase(productRemove)) {
+
+								iterator.remove();
+
+								productRemoveStock = true;
+								System.out.println("Product removed.");
+								break;
+							}
+						}
+
+						if (!productRemoveStock) {
+							System.out.println("The product could not be found.");
+						}
+					}
+					break;
+				}
 			}
+
 		} while (option != 0);
 
 		sc.close();
-
 	}
 }

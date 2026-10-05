@@ -6,7 +6,7 @@ public class Product {
 	private Double price;
 	private Integer quantity;
 	private String category;
-	
+
 	public Product() {
 	}
 
@@ -44,13 +44,16 @@ public class Product {
 	public Integer getQuantity() {
 		return quantity;
 	}
-	
+
 	public void addStock(Integer quantity) {
-		 this.quantity += quantity;
+		if (quantity <= 0) {
+			throw new IllegalArgumentException("It is not possible to add zero or negative numbers.");
+		}
+		this.quantity += quantity;
 	}
-	
+
 	public void removeStock(Integer quantity) {
-		if(quantity <= 0) {
+		if (quantity <= 0) {
 			throw new IllegalArgumentException("It is not possible to remove zero or negative numbers.");
 		} else if (this.quantity < quantity) {
 			throw new IllegalArgumentException("It is not possible to remove an amount greater than the current one.");
@@ -61,13 +64,8 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product: \n"
-				+ "Name: " + name + "\n"
-				+ "Price: " + String.format("%.2f", price) + "\n"
-				+ "Quantity:  " + quantity + "\n"
-				+ "Category: " + category + "\n";
+		return "Product: \n" + "Name: " + name + "\n" + "Price: " + String.format("%.2f", price) + "\n" + "Quantity:  "
+				+ quantity + "\n" + "Category: " + category + "\n";
 	}
-	
-	
-}
 
+}
