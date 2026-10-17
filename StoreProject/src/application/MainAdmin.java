@@ -99,7 +99,7 @@ public class MainAdmin {
                                     "There are no registered products; you need to register a product first in order to search for one.");
                         } else {
                             sc.nextLine();
-                            System.out.print("Which product would you like to search for?");
+                            System.out.print("Which product would you like to search for? ");
                             String search = sc.nextLine();
 
                             boolean found = false;
@@ -112,7 +112,7 @@ public class MainAdmin {
                                 }
                             }
                             if (!found) {
-                                System.out.println("The product could not be found.");
+                                System.out.println("The product could not be found. ");
                             }
 
                         }
@@ -121,17 +121,17 @@ public class MainAdmin {
                         try {
                             if (productService.getProducts().isEmpty()) {
                                 System.out.println(
-                                        "There are no registered products; you need to register a product first in order to search for one.");
+                                        "There are no registered products; you need to register a product first in order to search for one. ");
                             } else {
                                 sc.nextLine();
-                                System.out.print("Which product do you want to remove from stock?");
+                                System.out.print("Which product do you want to remove from stock? ");
                                 String ChooseRemove = sc.nextLine();
 
                                 boolean removeStock = false;
 
                                 for (Product product : productService.getProducts()) {
                                     if (product.getName().equalsIgnoreCase(ChooseRemove)) {
-                                        System.out.print("How many units do you wish to pick up?");
+                                        System.out.print("How many units do you wish to pick up? ");
                                         int pickUp = sc.nextInt();
                                         product.removeStock(pickUp);
                                         sc.nextLine();
@@ -142,7 +142,7 @@ public class MainAdmin {
                                 }
 
                                 if (!removeStock) {
-                                    System.out.println("The product could not be found.");
+                                    System.out.println("The product could not be found. ");
                                 }
                             }
 
@@ -157,14 +157,14 @@ public class MainAdmin {
                                         "There are no registered products; you need to register a product first in order to search for one.");
                             } else {
                                 sc.nextLine();
-                                System.out.print("Which product do you want to add from stock?");
+                                System.out.print("Which product do you want to add from stock? ");
                                 String chooseAdd = sc.nextLine();
 
                                 boolean addStock = false;
 
                                 for (Product product : productService.getProducts()) {
                                     if (product.getName().equalsIgnoreCase(chooseAdd)) {
-                                        System.out.print("How many units do you wish to add?");
+                                        System.out.print("How many units do you wish to add? ");
                                         int pickUp = sc.nextInt();
                                         product.addStock(pickUp);
                                         sc.nextLine();
@@ -208,6 +208,6 @@ public class MainAdmin {
 
         } while (option != 0);
 
-        sc.close();
+        
     }
 }

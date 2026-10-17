@@ -7,5 +7,7 @@ public class Main {
         ProductService productService = new ProductService();
         MainAdmin mainAdmin = new MainAdmin();
         mainAdmin.main(productService);
+        MainClient mainClient = new MainClient();
+        mainClient.main(productService);
     }
 }
