@@ -8,11 +8,8 @@ import java.util.Scanner;
 
 public class MainAdmin {
 
-    void main(ProductService productService) {
-
+    public static void menu(Scanner sc, ProductService productService) {
         Locale.setDefault(Locale.US);
-        Scanner sc = new Scanner(System.in);
-
 
         System.out.println("========================================");
         System.out.println("       STORE MANAGEMENT SYSTEM    ");
@@ -32,7 +29,7 @@ public class MainAdmin {
             System.out.println();
             System.out.print("Choose an option: ");
 
-            option = sc.nextInt();
+            option = Integer.parseInt(sc.nextLine());
             System.out.println();
 
             if (option < 0 || option > 6) {
@@ -48,8 +45,7 @@ public class MainAdmin {
                         System.out.println("========================================");
                         System.out.println();
                         System.out.print("How many products do you want to register? ");
-                        int register = sc.nextInt();
-                        sc.nextLine();
+                        int register = Integer.parseInt(sc.nextLine());
 
                         if (register <= 0) {
                             System.out.println("It is not possible to enter zero products or negative numbers.");
@@ -64,12 +60,10 @@ public class MainAdmin {
                                 String name = sc.nextLine();
 
                                 System.out.print("Product price: ");
-                                double price = sc.nextDouble();
-                                sc.nextLine();
+                                double price = Double.parseDouble(sc.nextLine());
 
                                 System.out.print("Product quantity: ");
-                                int quantity = sc.nextInt();
-                                sc.nextLine();
+                                int quantity = Integer.parseInt(sc.nextLine());
 
                                 System.out.print("Product category: ");
                                 String category = sc.nextLine();
@@ -98,7 +92,6 @@ public class MainAdmin {
                             System.out.println(
                                     "There are no registered products; you need to register a product first in order to search for one.");
                         } else {
-                            sc.nextLine();
                             System.out.print("Which product would you like to search for? ");
                             String search = sc.nextLine();
 
@@ -123,7 +116,6 @@ public class MainAdmin {
                                 System.out.println(
                                         "There are no registered products; you need to register a product first in order to search for one. ");
                             } else {
-                                sc.nextLine();
                                 System.out.print("Which product do you want to remove from stock? ");
                                 String ChooseRemove = sc.nextLine();
 
@@ -132,9 +124,8 @@ public class MainAdmin {
                                 for (Product product : productService.getProducts()) {
                                     if (product.getName().equalsIgnoreCase(ChooseRemove)) {
                                         System.out.print("How many units do you wish to pick up? ");
-                                        int pickUp = sc.nextInt();
+                                        int pickUp = Integer.parseInt(sc.nextLine());
                                         product.removeStock(pickUp);
-                                        sc.nextLine();
                                         removeStock = true;
                                         System.out.println("Updated product.");
                                         break;
@@ -156,7 +147,6 @@ public class MainAdmin {
                                 System.out.println(
                                         "There are no registered products; you need to register a product first in order to search for one.");
                             } else {
-                                sc.nextLine();
                                 System.out.print("Which product do you want to add from stock? ");
                                 String chooseAdd = sc.nextLine();
 
@@ -165,13 +155,11 @@ public class MainAdmin {
                                 for (Product product : productService.getProducts()) {
                                     if (product.getName().equalsIgnoreCase(chooseAdd)) {
                                         System.out.print("How many units do you wish to add? ");
-                                        int pickUp = sc.nextInt();
+                                        int pickUp = Integer.parseInt(sc.nextLine());
                                         product.addStock(pickUp);
-                                        sc.nextLine();
                                         addStock = true;
                                         System.out.println("Updated product.");
                                         break;
-
                                     }
                                 }
                                 if (!addStock) {
@@ -188,7 +176,6 @@ public class MainAdmin {
                             System.out.println(
                                     "There are no registered products; you need to register a product first in order to search for one.");
                         } else {
-                            sc.nextLine();
                             System.out.print("Which product do you want to remove from stock? ");
                             String productRemove = sc.nextLine();
 
@@ -202,12 +189,8 @@ public class MainAdmin {
                         }
                         break;
                 }
-
             }
 
-
         } while (option != 0);
-
-        
     }
 }
